@@ -2,6 +2,12 @@ from tkinter import *
 from PIL import Image, ImageTk
 import random
 
+#append a card to palyer list
+#def hit_player():
+    
+#append a card to dealer list
+#def hit_dealer():
+    
 
 root = Tk()
 root.title("Blackjack")
@@ -23,15 +29,7 @@ dealer_label.pack(pady=20)
 player_label = Label(player_frame,text="")
 player_label.pack(pady=20)
 
-#button frame and command buttons 
-button_frame = Frame(root, bg="green")
-button_frame.pack(rady=50)
 
-hit_button = Button(button_frame, text="HIT")
-hit_button.grid(row=0,column=0)
-
-stand_button = Button(button_frame,text="STAND")
-stand_button.grid(row=0,column=1)
 
 
 #players hand 
