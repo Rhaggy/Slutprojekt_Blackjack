@@ -4,10 +4,18 @@ import random
 
 #append a card to palyer list
 def hit_player():
-    f
+    global nr_of_card_player
+    if nr_of_card_player < 5:
+    try:
+        player = random.choice(get_value(deck))
+   
+
+
+    except:
+        root.title("No cards in deck")
 #append a card to dealer list
 def hit_dealer():
-    f
+    f 
 
 def shuffle_cards():
     # clearing last game 
@@ -25,7 +33,7 @@ def shuffle_cards():
 
 # value of cards
 def get_value(card): 
-    value = math.ceil(card/4)
+    value = math.ceil(card//4)
     if value == 1:
         return 11
     elif value > 10:
@@ -45,10 +53,10 @@ main_frame = Frame(root, bg="green")
 main_frame.pack(pady=20)
 
 dealer_frame = LabelFrame(main_frame, text="Dealer")
-dealer_frame.grid(row=0,column=0,pady=100,ipadx=50)
+dealer_frame.grid(row=0,column=0,pady=150,ipadx=250)
 
 player_frame = LabelFrame(main_frame, text="Player")
-player_frame.grid(row=1,column=0,ipadx=20)
+player_frame.grid(row=1,column=0,ipadx=250)
 
 # label for dealer cards
 dealer_label_1 = Label(dealer_frame,text=" ")
@@ -87,10 +95,10 @@ player_label_5.grid(row=1,column=4, pady= 20, padx=20)
 
 #players hand 
 player = []
-
-#dealers hans 
+nr_of_card_player = 0
+#dealers hand 
 dealer = []
-
+nr_of_card_dealer = 0
 
 
 
