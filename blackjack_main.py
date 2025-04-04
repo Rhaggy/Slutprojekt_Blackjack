@@ -43,7 +43,9 @@ deck = []
 for suits in suits:
     for card in cards:
         deck.append(f"{card}_of_{suits}")
-        print(deck)
+        
+
+print(deck)
     
 
 
