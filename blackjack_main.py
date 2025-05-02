@@ -31,16 +31,17 @@ def start_hand_player():
             player_spot += 1 
         else:
             pass
-#append a card to dealer list
+#give the starting hand for the dealer
 def start_hand_dealer():
-    global dealer_spot
+    global dealer_spot, dealer_image_1, dealer_image_2, dealer_card
     while dealer_spot < 2:
         if dealer_spot == 0: 
             dealer_card = random.choice(deck)
             deck.remove(dealer_card)
             dealer.append(dealer_card)
-            #Resize and add card to game board
-            player_spot =+ 1
+            dealer_image_1 = resize_card(f"cards/{dealer_card}.png")
+            dealer_label_1.config(image=dealer_image_1)
+            dealer_spot += 1
         else:
             pass
         if dealer_spot == 1:
@@ -48,13 +49,47 @@ def start_hand_dealer():
             deck.remove(dealer_card)
             dealer.append(dealer_card)
             #resize and add card back side to game board or hide card compleatly 
+            dealer_spot += 1
 
 def hit_player():
-    pass 
+    global player_spot, dealer_image1, dealer_image2
+    if player_spot <= 5:
+        if player_spot == 2:
+            player_card = random.choice(deck)
+            deck.remove(player_card)
+            player.append(player_card)
+            # REZISE AND add card in first player label
+            player_spot += 1
+            print(player)
+        elif player_spot == 3:
+            player_card = random.choice(deck)
+            deck.remove(player_card)
+            player.append(player_card)
+            # REZISE AND add card in first player label
+            player_spot += 1
+            print(player)
+        elif player_spot == 4:
+            player_card = random.choice(deck)
+            deck.remove(player_card)
+            player.append(player_card)
+            # REZISE AND add card in first player label
+            player_spot += 1
+            print(player)
+    else:
+        pass
+
 def hit_dealer():
-    pass
-def resize_card():
-    pass
+    global dealer_spot
+    if player_spot <= 5:
+        if dealer_spot == 2:
+                pass
+def resize_card(dealer_card):
+    global card_image
+    card_image = Image.open(dealer_card)
+    card_resized_img = card_image.resize((50,75))
+    card_image = ImageTk.PhotoImage(card_resized_img)
+    return card_image
+
 def new_game():
     # clearing last game 
     dealer_label_1.config(image=" ")
@@ -79,7 +114,7 @@ def get_value(card):
     else:
         return value
     
-suits = ["Hearts","Spades","Diamonds","Clubs"]
+suits = ["hearts","spades","diamonds","clubs"]
 cards = range(1, 14)
 
 
@@ -140,13 +175,13 @@ player_label_5.grid(row=1,column=4, pady= 75, padx=20)
 button_frame = Frame(root, bg="green")
 button_frame.pack(pady= 20)
 
-new_game_button = Button(button_frame,padx= 20, pady=20, text= "New game",font=("Roman", 10))#,command=new_game())
+new_game_button = Button(button_frame,padx= 20, pady=20, text= "New game",font=("Roman", 10),command=new_game)
 new_game_button.grid(row= 0, column= 2, padx= 20)
 
-stand_button = Button(button_frame,padx= 20, pady=20, text= "Stand",font=("Roman", 10))
+stand_button = Button(button_frame,padx= 20, pady=20, text= "Stand",font=("Roman", 10)) # command will be dealer hit 
 stand_button.grid(row= 0, column= 1, padx= 20)
 
-hit_button = Button(button_frame,padx= 20, pady=20, text= "Hit",font=("Roman", 10),bg="red")
+hit_button = Button(button_frame,padx= 20, pady=20, text= "Hit",font=("Roman", 10),bg="red",command=hit_player)
 hit_button.grid(row= 0, column= 0, padx= 20)
 
 score_frame = Frame(root, bg="green")
@@ -155,6 +190,17 @@ score_frame = Frame(root, bg="green")
 
 start_hand_player()
 print(player)
+
+start_hand_dealer()
+print(dealer)
+
+
+
+
+
+
+
+
 
 
 root.mainloop()
