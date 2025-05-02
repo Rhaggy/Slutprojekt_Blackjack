@@ -13,13 +13,14 @@ dealer_spot = 0
 
 #give the starting hand for the player 
 def start_hand_player():
-    global player_spot
+    global player_spot,player_image_1, player_image_2
     while player_spot < 2:
         if player_spot == 0:
             player_card = random.choice(deck)
             deck.remove(player_card)
             player.append(player_card)
-            # REZISE AND add card in first player label
+            player_image_1 = resize_card(f"cards/{player_card}.png")
+            player_label_1.config(image=player_image_1)
             player_spot += 1
         else:
             pass
@@ -27,7 +28,8 @@ def start_hand_player():
             player_card = random.choice(deck)
             deck.remove(player_card)
             player.append(player_card)
-            # REZISE AND add card in secound player label
+            player_image_2 = resize_card(f"cards/{player_card}.png")
+            player_label_2.config(image=player_image_2)
             player_spot += 1 
         else:
             pass
@@ -48,31 +50,35 @@ def start_hand_dealer():
             dealer_card = random.choice(deck)
             deck.remove(dealer_card)
             dealer.append(dealer_card)
-            #resize and add card back side to game board or hide card compleatly 
+            dealer_image_2 = resize_card(f"cards/{dealer_card}.png")
+            dealer_label_2.config(image=dealer_image_2)
             dealer_spot += 1
 
 def hit_player():
-    global player_spot, dealer_image1, dealer_image2
+    global player_spot, player_image_1, player_image_2, player_image_3, player_image_4, player_image_5
     if player_spot <= 5:
         if player_spot == 2:
             player_card = random.choice(deck)
             deck.remove(player_card)
             player.append(player_card)
-            # REZISE AND add card in first player label
+            player_image_3 = resize_card(f"cards/{player_card}.png")
+            player_label_3.config(image=player_image_3)
             player_spot += 1
             print(player)
         elif player_spot == 3:
             player_card = random.choice(deck)
             deck.remove(player_card)
             player.append(player_card)
-            # REZISE AND add card in first player label
+            player_image_4 = resize_card(f"cards/{player_card}.png")
+            player_label_4.config(image=player_image_4)
             player_spot += 1
             print(player)
         elif player_spot == 4:
             player_card = random.choice(deck)
             deck.remove(player_card)
             player.append(player_card)
-            # REZISE AND add card in first player label
+            player_image_5 = resize_card(f"cards/{player_card}.png")
+            player_label_5.config(image= player_image_5)
             player_spot += 1
             print(player)
     else:
@@ -83,10 +89,18 @@ def hit_dealer():
     if player_spot <= 5:
         if dealer_spot == 2:
                 pass
+
 def resize_card(dealer_card):
     global card_image
     card_image = Image.open(dealer_card)
-    card_resized_img = card_image.resize((50,75))
+    card_resized_img = card_image.resize((80,120))
+    card_image = ImageTk.PhotoImage(card_resized_img)
+    return card_image
+
+def resize_card(player_card):
+    global card_image
+    card_image = Image.open(player_card)
+    card_resized_img = card_image.resize((80,120))
     card_image = ImageTk.PhotoImage(card_resized_img)
     return card_image
 
@@ -141,36 +155,36 @@ player_frame.grid(row=1,column=0,ipadx=50)
 
 # label for dealer cards
 dealer_label_1 = Label(dealer_frame,text=" ")
-dealer_label_1.grid(row=0,column=0, pady= 75, padx=20)
+dealer_label_1.grid(row=0,column=0, pady= 20, padx=20)
 
 dealer_label_2 = Label(dealer_frame,text=" ")
-dealer_label_2.grid(row=0,column=1, pady= 75, padx=50)
+dealer_label_2.grid(row=0,column=1, pady= 20, padx=50)
 
 dealer_label_3 = Label(dealer_frame,text=" ")
-dealer_label_3.grid(row=0,column=2, pady= 75, padx=20)
+dealer_label_3.grid(row=0,column=2, pady= 20, padx=20)
 
 dealer_label_4 = Label(dealer_frame,text=" ")
-dealer_label_4.grid(row=0,column=3, pady= 75, padx=50)
+dealer_label_4.grid(row=0,column=3, pady= 20, padx=50)
 
 dealer_label_5 = Label(dealer_frame,text=" ")
-dealer_label_5.grid(row=0,column=4, pady= 75, padx=20)
+dealer_label_5.grid(row=0,column=4, pady= 20, padx=20)
 
 
 # label for players cards
 player_label_1 = Label(player_frame,text="")
-player_label_1.grid(row=1,column=0, pady= 75, padx=20)
+player_label_1.grid(row=1,column=0, pady= 20, padx=20)
 
 player_label_2 = Label(player_frame,text="")
-player_label_2.grid(row=1,column=1, pady= 75, padx=50)
+player_label_2.grid(row=1,column=1, pady= 20, padx=50)
 
 player_label_3 = Label(player_frame,text="")
-player_label_3.grid(row=1,column=2, pady= 75, padx=20)
+player_label_3.grid(row=1,column=2, pady= 20, padx=20)
 
 player_label_4 = Label(player_frame,text="")
-player_label_4.grid(row=1,column=3, pady= 75, padx=50)
+player_label_4.grid(row=1,column=3, pady= 20, padx=50)
 
 player_label_5 = Label(player_frame,text="")
-player_label_5.grid(row=1,column=4, pady= 75, padx=20)
+player_label_5.grid(row=1,column=4, pady= 20, padx=20)
 
 button_frame = Frame(root, bg="green")
 button_frame.pack(pady= 20)
@@ -189,10 +203,9 @@ score_frame = Frame(root, bg="green")
 
 
 start_hand_player()
-print(player)
 
 start_hand_dealer()
-print(dealer)
+
 
 
 
