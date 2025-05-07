@@ -106,8 +106,8 @@ def resize_card(player_card):
 
 def new_game():
     # clearing last game 
-    dealer_label_1.config(image=" ")
-    dealer_label_2.config(image=" ")
+    dealer_label_1.config(image= "")
+    dealer_label_2.config(image= "")
     dealer_label_3.config(image=" ")
     dealer_label_4.config(image=" ")
     dealer_label_5.config(image=" ")
