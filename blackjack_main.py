@@ -23,7 +23,7 @@ def start_hand_player():
             player.append(player_card)
             player_image_1 = resize_card(f"cards/{player_card}.png")
             player_label_1.config(image=player_image_1)
-
+            # get value of cards 
             value_of_card = int(player_card.split("_", 1)[0])
             if value_of_card == 1:
                 player_value += 11
@@ -41,15 +41,19 @@ def start_hand_player():
             player.append(player_card)
             player_image_2 = resize_card(f"cards/{player_card}.png")
             player_label_2.config(image=player_image_2)
-
+            # get value of cards 
             value_of_card = int(player_card.split("_", 1)[0])
             if value_of_card == 1:
-                player_value += 11
+                if player_value >= 11:
+                    player_value += value_of_card
+                else:  
+                    player_value += 11
+                
             elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
                 player_value += 10
             else:
                 player_value += value_of_card
-
+            print(f"player value:{player_value}")
             player_spot += 1 
         else:
             pass
@@ -63,7 +67,7 @@ def start_hand_dealer():
             dealer.append(dealer_card)
             dealer_image_1 = resize_card(f"cards/{dealer_card}.png")
             dealer_label_1.config(image=dealer_image_1)
-
+            # get value of cards 
             value_of_card = int(dealer_card.split("_", 1)[0])
             if value_of_card == 1:
                 dealer_value += 11
@@ -82,15 +86,18 @@ def start_hand_dealer():
             dealer.append(dealer_card)
             dealer_image_2 = resize_card(f"cards/{dealer_card}.png")
             dealer_label_2.config(image=dealer_image_2)
-
+            # get value of cards 
             value_of_card = int(dealer_card.split("_", 1)[0])
             if value_of_card == 1:
-                dealer_value += 11
+                if dealer_value >= 11:
+                    dealer_value += value_of_card
+                else:  
+                    dealer_value += 11
             elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
                 dealer_value += 10
             else:
                 dealer_value += value_of_card
-
+            print(f"dealer value:{dealer_value}")
             dealer_spot += 1
 
 
@@ -103,10 +110,13 @@ def hit_player():
             player.append(player_card)
             player_image_3 = resize_card(f"cards/{player_card}.png")
             player_label_3.config(image=player_image_3)
-
+            # get value of cards 
             value_of_card = int(player_card.split("_", 1)[0])
             if value_of_card == 1:
-                player_value += 11
+                if player_value >= 11:
+                    player_value += value_of_card
+                else:  
+                    player_value += 11
             elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
                 player_value += 10
             else:
@@ -120,10 +130,13 @@ def hit_player():
             player.append(player_card)
             player_image_4 = resize_card(f"cards/{player_card}.png")
             player_label_4.config(image=player_image_4)
-
+            # get value of cards 
             value_of_card = int(player_card.split("_", 1)[0])
             if value_of_card == 1:
-                player_value += 11
+                if player_value >= 11:
+                    player_value += value_of_card
+                else:  
+                    player_value += 11
             elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
                 player_value += 10
             else:
@@ -137,19 +150,24 @@ def hit_player():
             player.append(player_card)
             player_image_5 = resize_card(f"cards/{player_card}.png")
             player_label_5.config(image= player_image_5)
-
+            # get value of cards 
             value_of_card = int(player_card.split("_", 1)[0])
             if value_of_card == 1:
-                player_value += 11
+                if player_value >= 11:
+                    player_value += value_of_card
+                else:  
+                    player_value += 11
             elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
                 player_value += 10
             else:
                 player_value += value_of_card
 
             player_spot += 1
+            print(f"player value:{player_value}")
             print(player)
     else:
         pass
+    #splearen has max med kort 
 
 def hit_dealer():
     global dealer_spot
@@ -185,16 +203,6 @@ def new_game():
     player_label_4.config(image="")
     player_label_5.config(image="")
 
-
-# value of cards
-def get_value(player_card): 
-    value = math.ceil(player_card/4)
-    if value == 1:
-        return 11
-    elif value > 10:
-        return 10
-    else:
-        return value
     
 suits = ["hearts","spades","diamonds","clubs"]
 cards = range(1, 14)
