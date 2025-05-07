@@ -6,14 +6,16 @@ import math
 global player, player_spot, dealer, dealer_spot
 #players hand 
 player = []
+player_value = 0
 player_spot = 0
 #dealers hand 
 dealer = []
+dealer_value = 0
 dealer_spot = 0
 
 #give the starting hand for the player 
 def start_hand_player():
-    global player_spot,player_image_1, player_image_2
+    global player_spot,player_image_1, player_image_2, player_value
     while player_spot < 2:
         if player_spot == 0:
             player_card = random.choice(deck)
@@ -21,6 +23,15 @@ def start_hand_player():
             player.append(player_card)
             player_image_1 = resize_card(f"cards/{player_card}.png")
             player_label_1.config(image=player_image_1)
+
+            value_of_card = int(player_card.split("_", 1)[0])
+            if value_of_card == 1:
+                player_value += 11
+            elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                player_value += 10
+            else:
+                player_value += value_of_card
+
             player_spot += 1
         else:
             pass
@@ -30,12 +41,21 @@ def start_hand_player():
             player.append(player_card)
             player_image_2 = resize_card(f"cards/{player_card}.png")
             player_label_2.config(image=player_image_2)
+
+            value_of_card = int(player_card.split("_", 1)[0])
+            if value_of_card == 1:
+                player_value += 11
+            elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                player_value += 10
+            else:
+                player_value += value_of_card
+
             player_spot += 1 
         else:
             pass
 #give the starting hand for the dealer
 def start_hand_dealer():
-    global dealer_spot, dealer_image_1, dealer_image_2, dealer_card
+    global dealer_spot, dealer_image_1, dealer_image_2, dealer_card, dealer_value
     while dealer_spot < 2:
         if dealer_spot == 0: 
             dealer_card = random.choice(deck)
@@ -43,7 +63,17 @@ def start_hand_dealer():
             dealer.append(dealer_card)
             dealer_image_1 = resize_card(f"cards/{dealer_card}.png")
             dealer_label_1.config(image=dealer_image_1)
+
+            value_of_card = int(dealer_card.split("_", 1)[0])
+            if value_of_card == 1:
+                dealer_value += 11
+            elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                dealer_value += 10
+            else:
+                dealer_value += value_of_card
+
             dealer_spot += 1
+
         else:
             pass
         if dealer_spot == 1:
@@ -52,10 +82,20 @@ def start_hand_dealer():
             dealer.append(dealer_card)
             dealer_image_2 = resize_card(f"cards/{dealer_card}.png")
             dealer_label_2.config(image=dealer_image_2)
+
+            value_of_card = int(dealer_card.split("_", 1)[0])
+            if value_of_card == 1:
+                dealer_value += 11
+            elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                dealer_value += 10
+            else:
+                dealer_value += value_of_card
+
             dealer_spot += 1
 
+
 def hit_player():
-    global player_spot, player_image_1, player_image_2, player_image_3, player_image_4, player_image_5
+    global player_spot, player_image_1, player_image_2, player_image_3, player_image_4, player_image_5,player_value
     if player_spot <= 5:
         if player_spot == 2:
             player_card = random.choice(deck)
@@ -63,6 +103,15 @@ def hit_player():
             player.append(player_card)
             player_image_3 = resize_card(f"cards/{player_card}.png")
             player_label_3.config(image=player_image_3)
+
+            value_of_card = int(player_card.split("_", 1)[0])
+            if value_of_card == 1:
+                player_value += 11
+            elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                player_value += 10
+            else:
+                player_value += value_of_card
+
             player_spot += 1
             print(player)
         elif player_spot == 3:
@@ -71,6 +120,15 @@ def hit_player():
             player.append(player_card)
             player_image_4 = resize_card(f"cards/{player_card}.png")
             player_label_4.config(image=player_image_4)
+
+            value_of_card = int(player_card.split("_", 1)[0])
+            if value_of_card == 1:
+                player_value += 11
+            elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                player_value += 10
+            else:
+                player_value += value_of_card
+
             player_spot += 1
             print(player)
         elif player_spot == 4:
@@ -79,6 +137,15 @@ def hit_player():
             player.append(player_card)
             player_image_5 = resize_card(f"cards/{player_card}.png")
             player_label_5.config(image= player_image_5)
+
+            value_of_card = int(player_card.split("_", 1)[0])
+            if value_of_card == 1:
+                player_value += 11
+            elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                player_value += 10
+            else:
+                player_value += value_of_card
+
             player_spot += 1
             print(player)
     else:
@@ -106,21 +173,22 @@ def resize_card(player_card):
 
 def new_game():
     # clearing last game 
-    dealer_label_1.config(image= "")
-    dealer_label_2.config(image= "")
-    dealer_label_3.config(image=" ")
-    dealer_label_4.config(image=" ")
-    dealer_label_5.config(image=" ")
+    dealer_label_1.config(image="")
+    dealer_label_2.config(image="")
+    dealer_label_3.config(image="")
+    dealer_label_4.config(image="")
+    dealer_label_5.config(image="")
 
-    player_label_1.config(image=" ")
-    player_label_2.config(image=" ")
-    player_label_3.config(image=" ")
-    player_label_4.config(image=" ")
-    player_label_5.config(image=" ")
+    player_label_1.config(image="")
+    player_label_2.config(image="")
+    player_label_3.config(image="")
+    player_label_4.config(image="")
+    player_label_5.config(image="")
+
 
 # value of cards
-def get_value(card): 
-    value = math.ceil(card//4)
+def get_value(player_card): 
+    value = math.ceil(player_card/4)
     if value == 1:
         return 11
     elif value > 10:
@@ -205,6 +273,7 @@ score_frame = Frame(root, bg="green")
 start_hand_player()
 
 start_hand_dealer()
+
 
 
 
