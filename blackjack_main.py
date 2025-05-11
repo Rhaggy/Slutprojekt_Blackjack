@@ -170,10 +170,74 @@ def hit_player():
     #splearen has max med kort 
 
 def hit_dealer():
-    global dealer_spot
+    global dealer_spot,dealer_image_1,dealer_image_2,dealer_image_3,dealer_image_4,dealer_image_5,dealer_value
     if player_spot <= 5:
         if dealer_spot == 2:
-                pass
+                if dealer_value <= 17:
+                    dealer_card = random.choice(deck)
+                    deck.remove(dealer_card)
+                    dealer.append(dealer_card)
+                    dealer_image_3 = resize_card(f"cards/{dealer_card}.png")
+                    dealer_label_3.config(image=dealer_image_3)
+                # get value of cards 
+                    value_of_card = int(dealer_card.split("_", 1)[0])
+                    if value_of_card == 1:
+                        if dealer_value >= 11:
+                            dealer_value += value_of_card
+                        else:  
+                            dealer_value += 11
+                    elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                        dealer_value += 10
+                    else:
+                        dealer_value += value_of_card
+                    print(f"dealer value:{dealer_value}")
+                    dealer_spot += 1
+                else:
+                    pass
+        if dealer_spot == 3:
+                if dealer_value <= 17:
+                    dealer_card = random.choice(deck)
+                    deck.remove(dealer_card)
+                    dealer.append(dealer_card)
+                    dealer_image_4 = resize_card(f"cards/{dealer_card}.png")
+                    dealer_label_4.config(image=dealer_image_4)
+                # get value of cards 
+                    value_of_card = int(dealer_card.split("_", 1)[0])
+                    if value_of_card == 1:
+                        if dealer_value >= 11:
+                            dealer_value += value_of_card
+                        else:  
+                            dealer_value += 11
+                    elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                        dealer_value += 10
+                    else:
+                        dealer_value += value_of_card
+                    print(f"dealer value:{dealer_value}")
+                    dealer_spot += 1
+                else:
+                    pass
+        if dealer_spot == 4:
+                if dealer_value <= 17:
+                    dealer_card = random.choice(deck)
+                    deck.remove(dealer_card)
+                    dealer.append(dealer_card)
+                    dealer_image_5 = resize_card(f"cards/{dealer_card}.png")
+                    dealer_label_5.config(image=dealer_image_5)
+                # get value of cards 
+                    value_of_card = int(dealer_card.split("_", 1)[0])
+                    if value_of_card == 1:
+                        if dealer_value >= 11:
+                            dealer_value += value_of_card
+                        else:  
+                            dealer_value += 11
+                    elif value_of_card == 11 or value_of_card == 12 or value_of_card == 13:
+                        dealer_value += 10
+                    else:
+                        dealer_value += value_of_card
+                    print(f"dealer value:{dealer_value}")
+                    dealer_spot += 1
+                else:
+                    pass
 
 def resize_card(dealer_card):
     global card_image
@@ -268,7 +332,7 @@ button_frame.pack(pady= 20)
 new_game_button = Button(button_frame,padx= 20, pady=20, text= "New game",font=("Roman", 10),command=new_game)
 new_game_button.grid(row= 0, column= 2, padx= 20)
 
-stand_button = Button(button_frame,padx= 20, pady=20, text= "Stand",font=("Roman", 10)) # command will be dealer hit 
+stand_button = Button(button_frame,padx= 20, pady=20, text= "Stand",font=("Roman", 10), command=hit_dealer)
 stand_button.grid(row= 0, column= 1, padx= 20)
 
 hit_button = Button(button_frame,padx= 20, pady=20, text= "Hit",font=("Roman", 10),bg="red",command=hit_player)
