@@ -171,7 +171,7 @@ def hit_player():
 
 def hit_dealer():
     global dealer_spot,dealer_image_1,dealer_image_2,dealer_image_3,dealer_image_4,dealer_image_5,dealer_value
-    if player_spot <= 5:
+    if dealer_spot <= 5:
         if dealer_spot == 2:
                 if dealer_value <= 17:
                     dealer_card = random.choice(deck)
