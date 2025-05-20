@@ -254,7 +254,8 @@ def resize_card(player_card):
     return card_image
 
 def new_game():
-    # clearing last game 
+    global player_spot, dealer_spot
+    # clearing last game
     dealer_label_1.config(image="")
     dealer_label_2.config(image="")
     dealer_label_3.config(image="")
@@ -266,6 +267,13 @@ def new_game():
     player_label_3.config(image="")
     player_label_4.config(image="")
     player_label_5.config(image="")
+
+    player_spot == 0
+    dealer_spot == 0
+
+    start_hand_player()                           
+    start_hand_dealer()
+
 
     
 suits = ["hearts","spades","diamonds","clubs"]
@@ -288,10 +296,17 @@ main_frame = Frame(root, bg="green")
 main_frame.pack(pady=20)
 
 dealer_frame = LabelFrame(main_frame, text="Dealer",font=("Roman", 15, "bold"))
-dealer_frame.grid(row=0,column=0,pady=20,ipadx=50)
+dealer_frame.grid(sticky="", pady=50)
 
 player_frame = LabelFrame(main_frame, text="Player",font=("Roman", 15, "bold"))
-player_frame.grid(row=1,column=0,ipadx=50)
+player_frame.grid(sticky="")
+
+
+dealer_score_frame = LabelFrame(main_frame, text="Dealer score",font=("Roman", 15, "bold"))
+dealer_score_frame.grid(row=1,column=1)
+
+player_score_frame = LabelFrame(main_frame, text="Player score",font=("Roman", 15, "bold"))
+player_score_frame.grid(row=2, column=2)
 
 # label for dealer cards
 dealer_label_1 = Label(dealer_frame,text=" ")
