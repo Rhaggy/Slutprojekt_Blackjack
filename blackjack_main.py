@@ -16,7 +16,7 @@ dealer_spot = 0
 #give the starting hand for the player 
 def start_hand_player():
     global player_spot,player_image_1, player_image_2, player_value
-    while player_spot < 2:
+    if player_spot < 2:
         if player_spot == 0:
             player_card = random.choice(deck)
             deck.remove(player_card)
@@ -60,7 +60,7 @@ def start_hand_player():
 #give the starting hand for the dealer
 def start_hand_dealer():
     global dealer_spot, dealer_image_1, dealer_image_2, dealer_card, dealer_value
-    while dealer_spot < 2:
+    if dealer_spot < 2:
         if dealer_spot == 0: 
             dealer_card = random.choice(deck)
             deck.remove(dealer_card)
@@ -254,7 +254,7 @@ def resize_card(player_card):
     return card_image
 
 def new_game():
-    global player_spot, dealer_spot
+    global player_spot, dealer_spot,dealer_value,player_value
     # clearing last game
     dealer_label_1.config(image="")
     dealer_label_2.config(image="")
@@ -268,8 +268,13 @@ def new_game():
     player_label_4.config(image="")
     player_label_5.config(image="")
 
-    player_spot == 0
-    dealer_spot == 0
+    #reset scores and spots
+    player_spot = player_spot - player_spot 
+    dealer_spot = dealer_spot - dealer_spot
+    
+    dealer_value = dealer_value - dealer_value
+    player_value = player_value - player_value
+
 
     start_hand_player()                           
     start_hand_dealer()
@@ -279,13 +284,12 @@ def new_game():
 suits = ["hearts","spades","diamonds","clubs"]
 cards = range(1, 14)
 
-
 deck = []
 
 for suits in suits:
     for card in cards:
         deck.append(f"{card}_of_{suits}")
-    
+   
 
 root = Tk()
 root.title("Blackjack")
@@ -295,10 +299,10 @@ root.configure(background="green")
 main_frame = Frame(root, bg="green")
 main_frame.pack(pady=20)
 
-dealer_frame = LabelFrame(main_frame, text="Dealer",font=("Roman", 15, "bold"))
+dealer_frame = LabelFrame(main_frame, text="Dealer",font=("Roman", 15, "bold"),bg="green")
 dealer_frame.grid(sticky="", pady=50)
 
-player_frame = LabelFrame(main_frame, text="Player",font=("Roman", 15, "bold"))
+player_frame = LabelFrame(main_frame, text="Player",font=("Roman", 15, "bold"),bg="green")
 player_frame.grid(sticky="")
 
 
@@ -309,36 +313,36 @@ player_score_frame = LabelFrame(main_frame, text="Player score",font=("Roman", 1
 player_score_frame.grid(row=2, column=2)
 
 # label for dealer cards
-dealer_label_1 = Label(dealer_frame,text=" ")
+dealer_label_1 = Label(dealer_frame,text=" ",bg="green")
 dealer_label_1.grid(row=0,column=0, pady= 20, padx=20)
 
-dealer_label_2 = Label(dealer_frame,text=" ")
+dealer_label_2 = Label(dealer_frame,text=" ",bg="green")
 dealer_label_2.grid(row=0,column=1, pady= 20, padx=50)
 
-dealer_label_3 = Label(dealer_frame,text=" ")
+dealer_label_3 = Label(dealer_frame,text=" ",bg="green")
 dealer_label_3.grid(row=0,column=2, pady= 20, padx=20)
 
-dealer_label_4 = Label(dealer_frame,text=" ")
+dealer_label_4 = Label(dealer_frame,text=" ",bg="green")
 dealer_label_4.grid(row=0,column=3, pady= 20, padx=50)
 
-dealer_label_5 = Label(dealer_frame,text=" ")
+dealer_label_5 = Label(dealer_frame,text=" ",bg="green")
 dealer_label_5.grid(row=0,column=4, pady= 20, padx=20)
 
 
 # label for players cards
-player_label_1 = Label(player_frame,text="")
+player_label_1 = Label(player_frame,text="",bg="green")
 player_label_1.grid(row=1,column=0, pady= 20, padx=20)
 
-player_label_2 = Label(player_frame,text="")
+player_label_2 = Label(player_frame,text="",bg="green")
 player_label_2.grid(row=1,column=1, pady= 20, padx=50)
 
-player_label_3 = Label(player_frame,text="")
+player_label_3 = Label(player_frame,text="",bg="green")
 player_label_3.grid(row=1,column=2, pady= 20, padx=20)
 
-player_label_4 = Label(player_frame,text="")
+player_label_4 = Label(player_frame,text="",bg="green")
 player_label_4.grid(row=1,column=3, pady= 20, padx=50)
 
-player_label_5 = Label(player_frame,text="")
+player_label_5 = Label(player_frame,text="",bg="green")
 player_label_5.grid(row=1,column=4, pady= 20, padx=20)
 
 button_frame = Frame(root, bg="green")
@@ -354,7 +358,8 @@ hit_button = Button(button_frame,padx= 20, pady=20, text= "Hit",font=("Roman", 1
 hit_button.grid(row= 0, column= 0, padx= 20)
 
 score_frame = Frame(root, bg="green")
-#use get_value def to get the score of the player/delaers hand and update a "text" in a frame
+
+
 
 
 start_hand_player()
