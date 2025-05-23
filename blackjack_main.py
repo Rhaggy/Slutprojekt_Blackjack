@@ -32,8 +32,9 @@ def start_hand_player():
                 player_value += 10
             else:
                 player_value += value_of_card
-
+            
             player_spot += 1
+
         else:
             pass
         if player_spot == 1:
@@ -57,6 +58,7 @@ def start_hand_player():
                 player_value += value_of_card
             print(f"player value:{player_value}")
             player_spot += 1 
+
         else:
             pass
 #give the starting hand for the dealer
@@ -80,7 +82,6 @@ def start_hand_dealer():
                 dealer_value += value_of_card
 
             dealer_spot += 1
-
         else:
             pass
         if dealer_spot == 1:
@@ -105,6 +106,7 @@ def start_hand_dealer():
             dealer_spot += 1
 
 
+
 def hit_player():
     global player_spot, player_image_1, player_image_2, player_image_3, player_image_4, player_image_5,player_value
     if player_spot <= 5:
@@ -126,9 +128,10 @@ def hit_player():
                 player_value += 10
             else:
                 player_value += value_of_card
-
+            
+            print(f"player value:{player_value}")
             player_spot += 1
-            print(player)
+
         elif player_spot == 3:
             player_card = random.choice(deck)
             deck.remove(player_card)
@@ -148,8 +151,9 @@ def hit_player():
             else:
                 player_value += value_of_card
 
+            print(f"player value:{player_value}")
             player_spot += 1
-            print(player)
+
         elif player_spot == 4:
             player_card = random.choice(deck)
             deck.remove(player_card)
@@ -171,7 +175,7 @@ def hit_player():
 
             player_spot += 1
             print(f"player value:{player_value}")
-            print(player)
+            print(used_cards)
     else:
         pass
     #splearen has max med kort 
@@ -285,7 +289,7 @@ def new_game():
     dealer_value = dealer_value - dealer_value
     player_value = player_value - player_value
 
-    deck.append(used_cards)
+    deck.extend(used_cards)
     used_cards.clear()
 
     start_hand_player()                           
@@ -320,11 +324,6 @@ player_frame = LabelFrame(main_frame, text="Player",font=("Roman", 15, "bold"),b
 player_frame.grid(sticky="")
 
 
-dealer_score_frame = LabelFrame(main_frame, text="Dealer score",font=("Roman", 15, "bold"))
-dealer_score_frame.grid(row=1,column=1)
-
-player_score_frame = LabelFrame(main_frame, text="Player score",font=("Roman", 15, "bold"))
-player_score_frame.grid(row=2, column=2)
 
 # label for dealer cards
 dealer_label_1 = Label(dealer_frame,text=" ",bg="green")
@@ -380,7 +379,7 @@ start_hand_player()
 
 start_hand_dealer()
 
-
+print(used_cards)
 
 
 
