@@ -20,6 +20,7 @@ def start_hand_player():
         if player_spot == 0:
             player_card = random.choice(deck)
             deck.remove(player_card)
+            used_cards.append(player_card)
             player.append(player_card)
             player_image_1 = resize_card(f"cards/{player_card}.png")
             player_label_1.config(image=player_image_1)
@@ -38,6 +39,7 @@ def start_hand_player():
         if player_spot == 1:
             player_card = random.choice(deck)
             deck.remove(player_card)
+            used_cards.append(player_card)
             player.append(player_card)
             player_image_2 = resize_card(f"cards/{player_card}.png")
             player_label_2.config(image=player_image_2)
@@ -64,6 +66,7 @@ def start_hand_dealer():
         if dealer_spot == 0: 
             dealer_card = random.choice(deck)
             deck.remove(dealer_card)
+            used_cards.append(dealer_card)
             dealer.append(dealer_card)
             dealer_image_1 = resize_card(f"cards/{dealer_card}.png")
             dealer_label_1.config(image=dealer_image_1)
@@ -83,6 +86,7 @@ def start_hand_dealer():
         if dealer_spot == 1:
             dealer_card = random.choice(deck)
             deck.remove(dealer_card)
+            used_cards.append(dealer_card)
             dealer.append(dealer_card)
             dealer_image_2 = resize_card(f"cards/{dealer_card}.png")
             dealer_label_2.config(image=dealer_image_2)
@@ -107,6 +111,7 @@ def hit_player():
         if player_spot == 2:
             player_card = random.choice(deck)
             deck.remove(player_card)
+            used_cards.append(player_card)
             player.append(player_card)
             player_image_3 = resize_card(f"cards/{player_card}.png")
             player_label_3.config(image=player_image_3)
@@ -127,6 +132,7 @@ def hit_player():
         elif player_spot == 3:
             player_card = random.choice(deck)
             deck.remove(player_card)
+            used_cards.append(player_card)
             player.append(player_card)
             player_image_4 = resize_card(f"cards/{player_card}.png")
             player_label_4.config(image=player_image_4)
@@ -147,6 +153,7 @@ def hit_player():
         elif player_spot == 4:
             player_card = random.choice(deck)
             deck.remove(player_card)
+            used_cards.append(player_card)
             player.append(player_card)
             player_image_5 = resize_card(f"cards/{player_card}.png")
             player_label_5.config(image= player_image_5)
@@ -176,6 +183,7 @@ def hit_dealer():
                 if dealer_value <= 17:
                     dealer_card = random.choice(deck)
                     deck.remove(dealer_card)
+                    used_cards.append(dealer_card)
                     dealer.append(dealer_card)
                     dealer_image_3 = resize_card(f"cards/{dealer_card}.png")
                     dealer_label_3.config(image=dealer_image_3)
@@ -198,6 +206,7 @@ def hit_dealer():
                 if dealer_value <= 17:
                     dealer_card = random.choice(deck)
                     deck.remove(dealer_card)
+                    used_cards.append(dealer_card)
                     dealer.append(dealer_card)
                     dealer_image_4 = resize_card(f"cards/{dealer_card}.png")
                     dealer_label_4.config(image=dealer_image_4)
@@ -220,6 +229,7 @@ def hit_dealer():
                 if dealer_value <= 17:
                     dealer_card = random.choice(deck)
                     deck.remove(dealer_card)
+                    used_cards.append(dealer_card)
                     dealer.append(dealer_card)
                     dealer_image_5 = resize_card(f"cards/{dealer_card}.png")
                     dealer_label_5.config(image=dealer_image_5)
@@ -275,15 +285,19 @@ def new_game():
     dealer_value = dealer_value - dealer_value
     player_value = player_value - player_value
 
+    deck.append(used_cards)
+    used_cards.clear()
 
     start_hand_player()                           
     start_hand_dealer()
+
 
 
     
 suits = ["hearts","spades","diamonds","clubs"]
 cards = range(1, 14)
 
+used_cards = []
 deck = []
 
 for suits in suits:
@@ -317,13 +331,13 @@ dealer_label_1 = Label(dealer_frame,text=" ",bg="green")
 dealer_label_1.grid(row=0,column=0, pady= 20, padx=20)
 
 dealer_label_2 = Label(dealer_frame,text=" ",bg="green")
-dealer_label_2.grid(row=0,column=1, pady= 20, padx=50)
+dealer_label_2.grid(row=0,column=1, pady= 20, padx=20)
 
 dealer_label_3 = Label(dealer_frame,text=" ",bg="green")
 dealer_label_3.grid(row=0,column=2, pady= 20, padx=20)
 
 dealer_label_4 = Label(dealer_frame,text=" ",bg="green")
-dealer_label_4.grid(row=0,column=3, pady= 20, padx=50)
+dealer_label_4.grid(row=0,column=3, pady= 20, padx=20)
 
 dealer_label_5 = Label(dealer_frame,text=" ",bg="green")
 dealer_label_5.grid(row=0,column=4, pady= 20, padx=20)
@@ -334,13 +348,13 @@ player_label_1 = Label(player_frame,text="",bg="green")
 player_label_1.grid(row=1,column=0, pady= 20, padx=20)
 
 player_label_2 = Label(player_frame,text="",bg="green")
-player_label_2.grid(row=1,column=1, pady= 20, padx=50)
+player_label_2.grid(row=1,column=1, pady= 20, padx=20)
 
 player_label_3 = Label(player_frame,text="",bg="green")
 player_label_3.grid(row=1,column=2, pady= 20, padx=20)
 
 player_label_4 = Label(player_frame,text="",bg="green")
-player_label_4.grid(row=1,column=3, pady= 20, padx=50)
+player_label_4.grid(row=1,column=3, pady= 20, padx=20)
 
 player_label_5 = Label(player_frame,text="",bg="green")
 player_label_5.grid(row=1,column=4, pady= 20, padx=20)
