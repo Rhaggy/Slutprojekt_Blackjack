@@ -323,7 +323,7 @@ dealer_frame.grid(sticky="", pady=50)
 player_frame = LabelFrame(main_frame, text="Player",font=("Roman", 15, "bold"),bg="green")
 player_frame.grid(sticky="")
 
-
+player_score_frame = Frame(main_frame)
 
 # label for dealer cards
 dealer_label_1 = Label(dealer_frame,text=" ",bg="green")
